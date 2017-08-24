@@ -1,0 +1,19 @@
+Grupo 5
+
+Nome (RA):
+Lucas Alves Racoci (156331)
+Luiz Fernando Rodrigues da Fonseca (156475)
+Rafael Zane (157079)
+Rodrigo Noronha Máximo (157209)
+
+Tema - Utilização da biblioteca HIPI (Hadoop Image Processing Interface) para fazer MapReduce com imagens calculando as Componentes Principais de um conjunto de imagens através da Média e da Matriz de Covariância
+
+Plano de Trabalho
+
+Instalação da versão pseudo-distribuída do Hadoop e utilização da biblioteca de processamento de imagens HIPI, que fornece uma interface para o hadoop fazer Map e Reduce com entradas e saídas sendo imagens. Esta biblioteca e o Java também possuem um wrapper com a biblioteca de visão computacional OpenCV, que está implementada em C++, que possui várias ferramentas para o processamento de imagens avançado. O HIPI também disponibiliza ferramentas para juntar um conjunto de imagens em um arquivo .hib, que serve de entrada para o Framework de MapReduce.
+
+Foram feitos dois testes com imagens. A primeira aplicação de MapReduce calculava a média dos pixels das imagens. O Mapper calculava a média dos pixels de cada imagem e o Reducer juntava essas médias para calcular uma média geral de todas as imagens. O resultado está no arquivo texto result.txt, onde cada valor representa a média de cada canal de cor RGB (red, green, blue).
+
+A segunda aplicação é um pouco mais complicada, envolvendo duas etapas de MapReduce. A primeira etapa computa a média de 100 amostras aleatórias de tamanho fixo (64 x 64) recortadas de cada imagem no .hib. Esta média é um pouco diferente, resultando em uma imagem. Então, a segunda etapa calcula a matriz de covariância do mesmo conjunto de amostras usando a média calculada anteriormente. Depois é feito um processamento final em Python fora do Hadoop, para mostrar o resultado na figura result.png.
+
+O próximo passo para o trabalho será entender a fundo a segunda aplicação, para entender com mais clareza as etapas de MapReduce, e explicar a utilização do Framework.
