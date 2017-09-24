@@ -27,6 +27,7 @@ ___
 #### Visualizar diretorios e arquivos:
 
 - ```/usr/local/bin/hdfs dfs -ls```
+- ```/usr/local/bin/hdfs dfs -ls /user/RodrigoMaximo/Imagens```, considerando que criei esses diretórios.
 
 ___ 
 
@@ -60,7 +61,7 @@ Feito isso, basta seguir o restante dos passos abaixo.
 
 - ```ssh localhost```
 
-### 2) Format the filesystem: (NÃO PRECISA DENOVO)
+### 2) Format the filesystem:
 
 - ```/usr/local/bin/hdfs namenode -format``` 
 
@@ -72,7 +73,7 @@ Feito isso, basta seguir o restante dos passos abaixo.
 
 - http://localhost:50070/ no navegador
 
-### 5) Make the HDFS directories required to execute MapReduce jobs (NÃO PRECISA DENOVO)
+### 5) Make the HDFS directories required to execute MapReduce jobs
 
 - ```/usr/local/bin/hdfs dfs -mkdir /user```
 - ```/usr/local/bin/hdfs dfs -mkdir /user/<username>```
