@@ -82,7 +82,7 @@ def recomposeImage(R, Blocks):
 Blocks = 8
 
 # Size of the filter and number to be extended
-filterSize = 3
+filterSize = 13
 numExt = (filterSize - 1) / 2
 
 # getting an instance of spark context
@@ -90,7 +90,7 @@ sc = sc()
 
 # Obtaining rdd through of hdfs
 hdfsDirectory = 'hdfs://localhost:9000/SampleImages/'
-rdd = sc.binaryFiles(hdfsDirectory + '*.jpg')
+rdd = sc.binaryFiles(hdfsDirectory + '*')
 
 # Decoding the images -- file_params (fileName, binary)
 rdd = rdd.map(lambda file_params: (file_params[0], cv2.imdecode(np.asarray(bytearray(file_params[1]), dtype=np.uint8),1)))

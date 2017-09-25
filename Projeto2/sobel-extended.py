@@ -53,7 +53,7 @@ def calculateEdges(img):
     sobely = cv2.Sobel(img, cv2.CV_8U, 0, 1, ksize = filterSize)
 
     # Calculate the complete derivative and test it with the threshold
-    return np.uint8(np.sqrt(np.square(np.float64(sobelx)) + np.square(np.float64(sobely))) > T) * 255
+    return np.uint8(np.sqrt(np.square(np.float64(sobelx)) + np.square(np.float64(sobely))) < T) * 255
 
 # R: list of blocks
 def recomposeImage(R, Blocks):
@@ -89,10 +89,10 @@ def recomposeImage(R, Blocks):
 Blocks = 8
 
 # Threshold of the edge map
-T = 150
+T = 250
 
 # Size of the filter and number to be extended
-filterSize = 5
+filterSize = 7
 numExt = (filterSize - 1) / 2
 
 # getting an instance of spark context
@@ -100,7 +100,7 @@ sc = sc()
 
 # Obtaining rdd through of hdfs
 hdfsDirectory = 'hdfs://localhost:9000/SampleImages/'
-rdd = sc.binaryFiles(hdfsDirectory + '*.jpg')
+rdd = sc.binaryFiles(hdfsDirectory + '*')
 
 # Decoding the images -- file_params (fileName, binary)
 rdd = rdd.map(lambda file_params: (file_params[0], cv2.imdecode(np.asarray(bytearray(file_params[1]), dtype=np.uint8),1)))
