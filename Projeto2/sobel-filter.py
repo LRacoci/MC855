@@ -21,10 +21,10 @@ def recomposeImage(R, Blocks):
 # img: block of a image
 def calculateEdges(img):
     # Calculate the derivative in the x direction
-    sobelx = cv2.Sobel(img, cv2.CV_8U, 1, 0, ksize = 3)
+    sobelx = cv2.Sobel(img, cv2.CV_8U, 1, 0, ksize = filterSize)
 
     # Calculate the derivative in the y direction
-    sobely = cv2.Sobel(img, cv2.CV_8U, 0, 1, ksize = 3)
+    sobely = cv2.Sobel(img, cv2.CV_8U, 0, 1, ksize = filterSize)
 
     # Calculate the complete derivative and test it with the threshold
     return np.uint8(np.sqrt(np.square(np.float64(sobelx)) + np.square(np.float64(sobely))) < T) * 255
@@ -34,6 +34,9 @@ Blocks = 8
 
 # Threshold of the edge map
 T = 30
+
+# Size of the filter
+filterSize = 3
 
 # getting an instance of spark context
 sc = sc()

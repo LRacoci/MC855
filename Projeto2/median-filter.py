@@ -2,6 +2,10 @@ import cv2
 import numpy as np
 from pyspark import SparkContext as sc
 
+# img: block of a image
+def calculateMedian(img):
+    return cv2.medianBlur(img, 3)
+
 # R: list of blocks
 def recomposeImage(R, Blocks):
 
@@ -18,21 +22,17 @@ def recomposeImage(R, Blocks):
     image = np.concatenate(images, axis = 0)
     return image
 
-# img: block of a image
-def calculateMedian(img):
-    return cv2.medianBlur(img, 13)
-
 # Choice of number of blocks being Blocks * Blocks
 Blocks = 8
 
-# Threshold of the edge map
-T = 30
+# Size of the filter
+filterSize = 3
 
 # getting an instance of spark context
 sc = sc()
 
 # Obtaining rdd through of hdfs
-hdfsDirectory = 'hdfs://localhost:9000/ibagens/'
+hdfsDirectory = 'hdfs://localhost:9000/SampleImages/'
 rdd = sc.binaryFiles(hdfsDirectory + '*.jpg')
 
 # Decoding the images -- file_params (fileName, binary)

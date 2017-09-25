@@ -89,7 +89,7 @@ numExt = (filterSize - 1) / 2
 sc = sc()
 
 # Obtaining rdd through of hdfs
-hdfsDirectory = 'hdfs://localhost:9000/ibagens/'
+hdfsDirectory = 'hdfs://localhost:9000/SampleImages/'
 rdd = sc.binaryFiles(hdfsDirectory + '*.jpg')
 
 # Decoding the images -- file_params (fileName, binary)
