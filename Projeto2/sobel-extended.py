@@ -89,10 +89,10 @@ def recomposeImage(R, Blocks):
 Blocks = 8
 
 # Threshold of the edge map
-T = 250
+T = 50
 
 # Size of the filter and number to be extended
-filterSize = 7
+filterSize = 3
 numExt = (filterSize - 1) / 2
 
 # getting an instance of spark context
