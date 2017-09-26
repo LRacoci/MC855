@@ -83,7 +83,7 @@ Blocks = 8
 
 # Size of the filter and number to be extended
 filterSize = 13
-numExt = (filterSize - 1) / 2
+numExt = (filterSize - 1) // 2
 
 # getting an instance of spark context
 sc = sc()
